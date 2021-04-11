@@ -4,30 +4,14 @@ node_js:
 install:
   - yarn install --frozen-lockfile
   - npm install -g @aws-amplify/cli
-  - """
-    AWSCLOUDFORMATIONCONFIG="{\
-    \"configLevel\":\"project\",\
-    \"useProfile\":false,\
-    \"profileName\":\"default\",\
-    \"accessKeyId\":\"headlessaccesskeyid\",\
-    \"secretAccessKey\":\"headlesssecrectaccesskey\",\
-    \"region\":\"us-east-1\"\
-    }"
-    PROVIDERS="{\
-    \"awscloudformation\":$AWSCLOUDFORMATIONCONFIG\
-    }"
-
-    amplify pull \
-    --providers $PROVIDERS \
-    --yes
-    """
+  - amplify pull --yes --provider "{"awscloudformation":"{"useProfile":"false", "accessKeyId": "$AWS_ACCESS_KEY_ID", "secretAccessKey": "$AWS_SECRET_ACCESS_KEY"}"}"
 script:
   - yarn test
   - yarn build
 deploy:
   - provider: s3
-    access_key_id: $AWS_ACCESS_KEY_ID_PROD
-    secret_access_key: $AWS_SECRET_ACCESS_KEY_PROD
+    access_key_id: $AWS_ACCESS_KEY_ID
+    secret_access_key: $AWS_SECRET_ACCESS_KEY
     bucket: "eventing-production"
     skip_cleanup: true
     acl: public_read
@@ -35,8 +19,8 @@ deploy:
     on:
       branch: master
   - provider: s3
-    access_key_id: $AWS_ACCESS_KEY_ID_PREPROD
-    secret_access_key: $AWS_SECRET_ACCESS_KEY_PREPROD
+    access_key_id: $AWS_ACCESS_KEY_ID
+    secret_access_key: $AWS_SECRET_ACCESS_KEY
     bucket: "eventing-preprod"
     skip_cleanup: true
     acl: public_read
