@@ -17,8 +17,8 @@ deploy:
     on:
       branch: master
   - provider: s3
-    access_key_id: $AWS_ACCESS_KEY_ID_PROD
-    secret_access_key: $AWS_SECRET_ACCESS_KEY_PROD
+    access_key_id: $AWS_ACCESS_KEY_ID_PREPROD
+    secret_access_key: $AWS_SECRET_ACCESS_KEY_PREPROD
     bucket: "eventing-preprod"
     skip_cleanup: true
     acl: public_read
