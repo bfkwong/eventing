@@ -4,7 +4,7 @@ node_js:
 install:
   - yarn install --frozen-lockfile
   - npm install -g @aws-amplify/cli
-  - amplify pull --yes --provider "{"awscloudformation":"{"useProfile":"false", "accessKeyId": "$AWS_ACCESS_KEY_ID", "secretAccessKey": "$AWS_SECRET_ACCESS_KEY"}"}"
+  - ./amplify-pull.sh $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY
 script:
   - yarn test
   - yarn build
