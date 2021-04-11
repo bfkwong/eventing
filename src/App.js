@@ -1,7 +1,7 @@
 import "./App.css";
 
 function App() {
-  return <div></div>;
+  return <div>Eventing</div>;
 }
 
 export default App;
