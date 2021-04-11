@@ -22,5 +22,6 @@ deploy:
     bucket: "eventing-preprod"
     skip_cleanup: true
     acl: public_read
+    local_dir: build
     on:
       branch: development
