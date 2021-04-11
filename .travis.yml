@@ -2,7 +2,7 @@ language: node_js
 node_js:
   - "stable"
 install:
-  - amplifyPush --simple
+  - amplify env checkout staging
   - yarn install --frozen-lockfile
 script:
   - yarn test
